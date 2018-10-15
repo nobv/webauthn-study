@@ -1,0 +1,33 @@
+package server
+
+import (
+	"log"
+	"net/http"
+
+	"github.com/Nobv/webauthn/color"
+	"github.com/Nobv/webauthn/handler"
+	"github.com/gorilla/mux"
+)
+
+func NewServer(addr string) *http.Server {
+
+	router := InitRouting()
+
+	return &http.Server{
+		Addr:    addr,
+		Handler: router,
+	}
+}
+
+func StartServer(server *http.Server) {
+	log.Println(color.Coloring(color.Cyan, "starting server..."))
+}
+
+func InitRouting() *mux.Router {
+
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", handler.IndexHandler)
+
+	return r
+}
