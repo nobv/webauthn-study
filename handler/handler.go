@@ -1,8 +1,11 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 )
 
-func indexHandler(w http.ResponseWriter, req *http.Request) {
+func RegisterHandler(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, `{"message": "OK"}`)
 }

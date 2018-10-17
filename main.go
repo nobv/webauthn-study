@@ -1,12 +1,13 @@
 package main
 
 import (
-	"net/http"
+	"github.com/Nobv/webauthn/server"
 )
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("./")))
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		panic(err)
-	}
+
+	addr := "localhost:3000"
+
+	s := server.NewServer(addr)
+	server.StartServer(s)
 }

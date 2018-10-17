@@ -21,13 +21,19 @@ func NewServer(addr string) *http.Server {
 
 func StartServer(server *http.Server) {
 	log.Println(color.Coloring(color.Cyan, "starting server..."))
+
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatalf("Error: %v", err)
+	}
+
 }
 
 func InitRouting() *mux.Router {
 
 	r := mux.NewRouter()
-
-	r.HandleFunc("/", handler.IndexHandler)
+	r.HandleFunc("/register", handler.RegisterHandler)
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
 
 	return r
 }
