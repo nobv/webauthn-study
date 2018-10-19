@@ -17,7 +17,7 @@ document.querySelector("#register").addEventListener("submit", async (e) => {
     console.log(json);
 });
 
-let fetchJson = async (url, option) => {
+async function fetchJson(url, option) {
     
     const res = await fetch(url, option);
 
