@@ -1,15 +1,11 @@
+'use strict';
+
 document.querySelector("#register").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const username = new FormData(e.target).get("username");
     console.log(username);
 
-    //const responce = await fetch("register", {
-    //    method: "GET",
-    //});
-
-    //const json = await responce.json();
-    //
     const json = await fetchJson("register", {
         method: "GET"
     });
@@ -17,8 +13,21 @@ document.querySelector("#register").addEventListener("submit", async (e) => {
     console.log(json);
 });
 
+document.querySelector("#test").addEventListener("click", async () => {
+    navigator.credentials.get({'password': true}).then(credential => {
+        if(!credential){
+            throw new Error("No Credential returned");
+        }
+
+        let credentials = {
+            'username': credential.id,
+            'password': credential.password
+        }
+    });
+});
+
 let fetchJson = async (url, option) => {
-    
+
     const res = await fetch(url, option);
 
     return res.json();
