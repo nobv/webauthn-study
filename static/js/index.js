@@ -26,8 +26,8 @@ document.querySelector("#test").addEventListener("click", async () => {
     });
 });
 
-let fetchJson = async (url, option) => {
-
+async function fetchJson(url, option) {
+    
     const res = await fetch(url, option);
 
     return res.json();
