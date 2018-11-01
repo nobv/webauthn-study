@@ -7,5 +7,5 @@ import (
 
 func RegisterHandler(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, `{"message": "OK"}`)
+	fmt.Fprint(w, `{"status": "200", "message": "OK"}`)
 }
